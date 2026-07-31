@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  /* ── Light mode base ── */
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    cursor: auto;
+  }
+
+  /* ── Dark mode base ── */
+  .dark body {
+    @apply bg-[#0a0e1a] text-gray-100;
+  }
+
+  /* Ensure all text is readable in both modes */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  p {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  label {
+    @apply text-gray-700 dark:text-gray-200;
+  }
+
+  /* Inputs — always high contrast */
+  input, textarea, select {
+    @apply bg-white dark:bg-white/[0.06] text-gray-900 dark:text-gray-100
+           border-gray-300 dark:border-white/15
+           placeholder-gray-400 dark:placeholder-gray-500;
+    caret-color: #2563eb;
+  }
+
+  .dark input, .dark textarea, .dark select {
+    caret-color: #60a5fa;
+  }
+}
+
+@layer utilities {
+  /* ── Glass ── */
+  .glass {
+    @apply bg-white/80 dark:bg-white/[0.06] backdrop-blur-xl
+           border border-gray-200 dark:border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-white dark:bg-white/[0.04] backdrop-blur-xl
+           border border-gray-200 dark:border-white/10 rounded-2xl;
+  }
+
+  /* ── Gradient text (always visible in both modes) ── */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-dark {
+    @apply bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent;
+  }
+
+  .dark .gradient-text-dark {
+    @apply bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  /* ── Buttons ── */
+  .gradient-btn {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white;
+  }
+
+  .gradient-btn:hover {
+    @apply from-blue-500 to-indigo-500;
+  }
+
+  /* ── Grid background ── */
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .dark .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  }
+
+  /* ── Glow ── */
+  .glow {
+    box-shadow: 0 0 40px -10px rgba(37, 99, 235, 0.4);
+  }
+
+  .dark .glow {
+    box-shadow: 0 0 60px -10px rgba(99, 102, 241, 0.35);
+  }
+
+  /* ── Scrollbar ── */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-white/10 rounded-full;
+  }
+
+  /* ── Chip / tag text always visible ── */
+  .chip-text {
+    @apply text-gray-800 dark:text-gray-100;
+  }
+}
+
+/* ── Animations ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-blob {
+  animation: blob 18s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
